@@ -70,3 +70,40 @@ INSERT INTO ProductRatings (ProductId, Rating, Review) VALUES (4, 5, 'Great for 
 
 
 
+--------------------------------------------------------------------------------------
+
+/*
+ SQLite enforces referential integrity,
+ which means it does not allow the removal of a table if its primary key (PK) is being referenced as a foreign key (FK) 
+ in another table. To execute a rollback plan correctly while adhering to these constraints,
+ it's essential to carefully sequence the dropping of tables in reverse order of their dependency chain.
+
+Here is an improved approach for rolling back our schema changes:
+
+Drop the ProductRatings Table:
+Begin by dropping the ProductRatings table, as it is the most dependent, 
+ referencing the Products table through a foreign key.
+
+DROP TABLE IF EXISTS ProductRatings;
+ 
+Drop the Products Table:
+Next, drop the Products table. Since we've removed the ProductRatings table already, 
+ there are no longer any foreign key constraints preventing this operation.
+
+DROP TABLE IF EXISTS Products;
+ 
+Drop the Categories Table:
+Finally, with the Products table (which referenced Categories through a foreign key) now removed,
+ you can safely drop the Categories table.
+
+DROP TABLE IF EXISTS Categories;
+ */
+ 
+ /*
+  or we can do this 
+  Disable Foreign Key Checks Temporarily (if supported by your DBMS): 
+  Some databases allow you to temporarily disable foreign key checks to perform operations that would 
+  otherwise be restricted. For SQLite, you can do:
+
+PRAGMA foreign_keys = OFF;
+*/
