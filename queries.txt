@@ -1,0 +1,72 @@
+﻿
+-- creating the table products 
+/*
+CREATE TABLE Products (
+        Id INTEGER PRIMARY KEY,
+        Name TEXT NOT NULL,
+         Price REAL NOT NULL
+);
+*/
+
+-- creating the table Categories 
+/*
+CREATE TABLE Categories (
+      Id INTEGER PRIMARY KEY,
+      Name TEXT NOT NULL
+);
+
+ */
+
+-- droping product 
+--drop table Products
+-- alter the table product to add constrain from category table 
+/*
+CREATE TABLE Products(
+                              Id INTEGER PRIMARY KEY,
+                              Name TEXT NOT NULL,
+                              Price REAL NOT NULL,
+                              category_id INTEGER,
+                              FOREIGN KEY (category_id) REFERENCES Categories(Id)
+);
+
+ */
+
+-- adding rating table , where rating has foreign key from product table 
+/*
+CREATE TABLE ProductRatings (
+                                Id INTEGER PRIMARY KEY,
+                                ProductId INTEGER NOT NULL,
+                                Rating INTEGER NOT NULL,
+                                Review TEXT,
+                                FOREIGN KEY (ProductId) REFERENCES Products(Id)
+);
+
+ */
+
+/*
+-- testing and validation the table with mock data 
+
+--Adding Mock Data to Categories
+INSERT INTO Categories (Name) VALUES ('Electronics');
+INSERT INTO Categories (Name) VALUES ('Books');
+INSERT INTO Categories (Name) VALUES ('Home Appliances');
+
+--Adding Mock Data to Products
+INSERT INTO Products (Name, Price, category_id) VALUES ('Laptop', 1200.00, 1);
+INSERT INTO Products (Name, Price, category_id) VALUES ('Smartphone', 800.00, 1);
+INSERT INTO Products (Name, Price, category_id) VALUES ('Database Systems', 59.99, 2);
+INSERT INTO Products (Name, Price, category_id) VALUES ('Python Programming', 39.99, 2);
+INSERT INTO Products (Name, Price, category_id) VALUES ('Microwave Oven', 99.99, 3);
+INSERT INTO Products (Name, Price, category_id) VALUES ('Vacuum Cleaner', 149.99, 3);
+
+--Adding Mock Data to ProductRatings
+INSERT INTO ProductRatings (ProductId, Rating, Review) VALUES (1, 5, 'Excellent laptop with high performance.');
+INSERT INTO ProductRatings (ProductId, Rating, Review) VALUES (1, 4, 'Good but battery life could be better.');
+INSERT INTO ProductRatings (ProductId, Rating, Review) VALUES (2, 4, 'Very reliable and fast.');
+INSERT INTO ProductRatings (ProductId, Rating, Review) VALUES (3, 5, 'Comprehensive and detailed. Highly recommended.');
+INSERT INTO ProductRatings (ProductId, Rating, Review) VALUES (4, 5, 'Great for beginners and advanced programmers alike.');
+
+ */
+
+
+
